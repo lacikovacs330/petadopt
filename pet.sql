@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 09:30 PM
+-- Generation Time: Jun 19, 2022 at 09:18 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -38,6 +38,20 @@ CREATE TABLE `adopts` (
   `address` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- Dumping data for table `adopts`
+--
+
+INSERT INTO `adopts` (`adopt_id`, `user`, `pet_name`, `pet_specie`, `lastname`, `firstname`, `email`, `address`) VALUES
+(32, 'pnorbi', 'Maja', 'Husky', 'Péter', 'Norbert', 'pnorbyy01@gmail.com', 'Jovan Popovity 7'),
+(33, 'teszt123', 'Lola', 'Sziámi', 'Péter', 'Norbert', 'pnorbyy01@gmail.com', 'Jovan Popovity 7'),
+(34, 'pnorbi', 'Hamu', 'Golden retriever', 'asd', 'asd', 'asdasd@gmail.com', 'asdasdasd'),
+(36, 'pnorbi', 'Hamu', 'Golden retriever', 'asd', 'asd', 'asd@gmail.com', 'asd'),
+(37, 'pnorbi', 'Parázs', 'Németjuhász', 'asd', 'xasasd', 'asd@gmail.com', 'asd'),
+(38, 'pnorbi', 'Pepe', 'Shiba Inu', 'asd', 'asd', 'asd@gmail.com', 'asd'),
+(39, 'pnorbi', 'Maja', 'Husky', 'asd', 'asad', 'asd@gmail.com', 'asd'),
+(40, 'pnorbi', 'Cirmi', 'Brit', 'asda', 'sdasd', 'asd@gmail.com', 'sdasd');
+
 -- --------------------------------------------------------
 
 --
@@ -67,7 +81,6 @@ INSERT INTO `animals` (`id`, `name`, `image`) VALUES
 CREATE TABLE `contacts` (
   `id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
-  `user` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `firstname` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `lastname` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
@@ -78,13 +91,16 @@ CREATE TABLE `contacts` (
 -- Dumping data for table `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `question_id`, `user`, `firstname`, `lastname`, `email`, `text`) VALUES
-(54, 1, 'Norbertasd', 'Norbert', 'Péter', 'pnorbyy01@gmail.com', 'Semmi'),
-(55, 2, 'pnorbi', 'Norbert', 'Péter', 'pnorbyy01@gmail.com', 'Most 54'),
-(56, 3, 'pnorbi', 'Norbert', 'Péter', 'pnorbyy01@gmail.com', 'asd'),
-(57, 1, 'pnorbi', 'Norbert', 'Péter', 'pnorbyy01@gmail.com', 'Mondd el'),
-(58, 1, '', 'asd', 'asd', 'asdasdasdasd@asd.com', 'asdsad'),
-(59, 2, 'pnorbi', 'Norbert', 'Péter', 'pnorbyy01@gmail.com', 'asdasdasd');
+INSERT INTO `contacts` (`id`, `question_id`, `firstname`, `lastname`, `email`, `text`) VALUES
+(62, 3, 'asd', 'asd', 'asdas@gmail.com', '123'),
+(63, 1, 'Norbert', 'Péter', 'pnorbyy01@gmail.com', 'asd'),
+(64, 1, 'asd', 'asd', 'asd@gmail.com', 'asd'),
+(65, 1, 'asd', 'asd', 'pnorbyy01@gmail.com', 'asd'),
+(66, 3, 'Norbert', 'asd', 'asdas@gmail.com', 'asd'),
+(67, 1, 'asd', 'asd', 'asdas@gmail.com', 'sdad'),
+(68, 2, 'asd', 'asd', 'asdas@gmail.com', 'asd'),
+(69, 2, 'asd', 'asd', 'asdasdasdasd@asd.com', 'asd'),
+(70, 2, 'asd', 'asd', 'asdas@gmail.com', 'asd');
 
 -- --------------------------------------------------------
 
@@ -122,9 +138,7 @@ CREATE TABLE `favourites` (
 --
 
 INSERT INTO `favourites` (`user_id`, `pet_id`) VALUES
-(3, 8),
-(3, 6),
-(6, 4);
+(6, 3);
 
 -- --------------------------------------------------------
 
@@ -150,7 +164,9 @@ INSERT INTO `forgotpw` (`id_user`, `token`) VALUES
 (3, 'VexvRacxLaglRbuvNiovUbfiBgnxOltoDegzLrkj'),
 (3, 'DyzatniAlbebbvMlkhkriRbtdoftWbffaemNrcsw'),
 (3, 'XikdaxtxOdumfsapAqjnggbtWcmwrbxvDpkbfqcm'),
-(3, 'YmtvrxseWxyhvzygXxofoqhsUrysultnGluqerpj');
+(3, 'YmtvrxseWxyhvzygXxofoqhsUrysultnGluqerpj'),
+(3, 'EhxtdokhlYpmbjfeilEykrolgwhPzlvserrtJqoo'),
+(10, 'KwagitggVmabxivqSudlouhkVsqualkpYvrvregb');
 
 -- --------------------------------------------------------
 
@@ -161,7 +177,7 @@ INSERT INTO `forgotpw` (`id_user`, `token`) VALUES
 CREATE TABLE `pets` (
   `id` int(11) NOT NULL,
   `specieId` int(11) NOT NULL,
-  `whose` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `whose` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_hungarian_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
   `image` varchar(50) COLLATE utf8_hungarian_ci DEFAULT NULL,
@@ -176,15 +192,16 @@ CREATE TABLE `pets` (
 --
 
 INSERT INTO `pets` (`id`, `specieId`, `whose`, `name`, `description`, `image`, `gender`, `age`, `adopted`, `active`) VALUES
-(1, 2, '', 'Főnök', 'A pihe puha perzsa macska a legkedveltebb macskafajták egyike.', 'persian.jpg', 'Fiú', 2, 1, 1),
-(2, 3, '', 'Cirmi', 'Nyugodt és kiegyensúlyozott természetű.', 'brit.jpg', 'Lány', 1, 1, 1),
-(3, 4, '', 'Simba', 'Egy igazi “házi tigris macska” hiszen vadmacska vér is csörgedezik az ereiben.', 'bengal.jpg', 'Fiú', 4, 1, 1),
-(4, 5, '', 'Tomi', 'Rongybaba macska', 'ragdoll.jpg', 'Fiú', 3, 1, 1),
-(5, 1, '', 'Lola', 'Egyik legrégebbi és legismertebb macskafajta.', 'siamese.jpg', 'Lány', 1, 1, 1),
-(6, 8, '', 'Parázs', 'Okos, kedves, játékos kutya, és mindemellett hűséges társ. Gyakran alkalmazzák nyomozó-, mentő- és vakvezető kutyaként.', 'german-shepherd.jpg', 'Fiú', 1, 1, 1),
-(7, 9, '', 'Maja', 'Sugárzóan kék szemek és a tipikus szőrzetmintázat.', 'siberian-husky.jpg', 'Lány', 2, 1, 1),
-(8, 6, '', 'Hamu', 'Gyakran alkalmazzák segítőkutyaként, kedves, barátságos természete van.', 'golden-retriever.jpg', 'Fiú', 1, 1, 1),
-(9, 7, '', 'Pepe', 'Bundája plüsshatású és könnyen kezelhető.', 'shiba-inu.jpg', 'Fiú', 1, 1, 1);
+(1, 2, 0, 'Főnök', 'A pihe puha perzsa macska a legkedveltebb macskafajták egyike.', 'persian.jpg', 'Fiú', 2, 1, 1),
+(2, 3, 0, 'Cirmi', 'Nyugodt és kiegyensúlyozott természetű.', 'brit.jpg', 'Lány', 1, 1, 1),
+(3, 4, 0, 'Simba', 'Egy igazi “házi tigris macska” hiszen vadmacska vér is csörgedezik az ereiben.', 'bengal.jpg', 'Fiú', 4, 1, 1),
+(4, 5, 0, 'Tomi', 'Rongybaba macska', 'ragdoll.jpg', 'Fiú', 3, 1, 1),
+(5, 1, 0, 'Lola', 'Egyik legrégebbi és legismertebb macskafajta.', 'siamese.jpg', 'Lány', 1, 1, 1),
+(6, 8, 0, 'Parázs', 'Okos, kedves, játékos kutya, és mindemellett hűséges társ. Gyakran alkalmazzák nyomozó-, mentő- és vakvezető kutyaként.', 'german-shepherd.jpg', 'Fiú', 1, 1, 1),
+(7, 9, 0, 'Maja', 'Sugárzóan kék szemek és a tipikus szőrzetmintázat.', 'siberian-husky.jpg', 'Lány', 2, 1, 1),
+(8, 6, 0, 'Hamu', 'Gyakran alkalmazzák segítőkutyaként, kedves, barátságos természete van.', 'golden-retriever.jpg', 'Fiú', 1, 1, 1),
+(9, 7, 0, 'Pepe', 'Bundája plüsshatású és könnyen kezelhető.', 'shiba-inu.jpg', 'Fiú', 1, 1, 1),
+(84, 1, 10, 'asd', 'asd', 'asd.jpg', 'Lány', 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -204,15 +221,15 @@ CREATE TABLE `species` (
 --
 
 INSERT INTO `species` (`id`, `name`, `image`, `animalId`) VALUES
-(1, 'Sziámi', 'cat-image.png', 1),
-(2, 'Perzsa', 'cat-image.png', 1),
-(3, 'Brit', 'cat-image.png', 1),
-(4, 'Bengáli', 'cat-image.png', 1),
-(5, 'Ragdoll', 'cat-image.png', 1),
-(6, 'Golden retriever', 'dog-image.png', 2),
-(7, 'Shiba Inu', 'dog-image.png', 2),
-(8, 'Németjuhász', 'dog-image.png', 2),
-(9, 'Husky', 'dog-image.png', 2);
+(1, 'Sziámi', 'siamese-specie.jpg', 1),
+(2, 'Perzsa', 'persian-specie.jpg', 1),
+(3, 'Brit', 'brittish-specie.jpg', 1),
+(4, 'Bengáli', 'bengal-specie.jpg', 1),
+(5, 'Ragdoll', 'ragdoll-specie.jpg', 1),
+(6, 'Golden retriever', 'golden-retriever-specie.jpg', 2),
+(7, 'Shiba Inu', 'shiba-inu-specie.jpg', 2),
+(8, 'Németjuhász', 'german-shepherd-specie.jpg', 2),
+(9, 'Husky', 'husky-specie.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -261,10 +278,13 @@ CREATE TABLE `users_web` (
 --
 
 INSERT INTO `users_web` (`id_user`, `username`, `firstname`, `lastname`, `password`, `email`, `token`, `registration_expires`, `active`, `code_password`, `new_password_expires`, `level`) VALUES
-(3, 'pnorbi', 'Norbert', 'Péter', '$2y$10$8SwpnMNlssZ8ZbOYZV0MkOn7.Q5vhWuZUI52QrMCLt6bTrgeP9uy.', 'pnorbyy01@gmail.com', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 2),
+(3, 'pnorbi', 'Norbert', 'Péter', '$2y$10$NfDWkiXGZ/3i0syuf.Eqk.wMHlaaCg1vNpltiVK0MQ50OwMvAExbe', 'pnorbyy01@gmail.com', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 2),
 (4, 'TesztFiók', 'Teszt', 'Fiók', '$2y$10$wvSrRzhdzJUByEefZNytZe9dZHnHu85bj21V6fyxsuwyLLrRZYyau', 'tesztfiok@gmail.com', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1),
-(5, 'teszt23232', 'asd', 'asd', '$2y$10$499SiWWlCAR4K9mR3Bkf3.qPlofMJBYIbNw8Paf6i7.XaXzzI9tiq', 'asdasdasdasd@asd.com', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1),
-(6, 'tesztelek', 'Teszt', 'Elek', '$2y$10$1JB.RofFprnGxh/E833to.qyKTe8frLI4c0SCAO1i8zUOJlL1XLFK', 'tesztelek@gmail.hu', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1);
+(5, 'teszt23232', 'asd', 'asd', '$2y$10$499SiWWlCAR4K9mR3Bkf3.qPlofMJBYIbNw8Paf6i7.XaXzzI9tiq', 'asdasdasdasd@asd.com', '', '0000-00-00 00:00:00', -1, '', '0000-00-00 00:00:00', 1),
+(6, 'tesztelek', 'Teszt', 'Elek', '$2y$10$1JB.RofFprnGxh/E833to.qyKTe8frLI4c0SCAO1i8zUOJlL1XLFK', 'tesztelek@gmail.hu', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1),
+(8, 'teszt123', 'Teszt', 'Elekember', '$2y$10$pGjDKvlUZ1GelfYW8j4FpexDBgAAyszDT1KYSbk71l8qRZmnunK3u', 'teszt123@yahoo.com', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1),
+(9, 'teszt55', 'teszt55', 'teszt55', '$2y$10$2fhONDWhd7g6AqOkXFjNVOYxl7V65.MEK4sKpfpfkm8FGwMz/nu8.', 'teszt55@gmail.com', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1),
+(10, 'Tesztelekmost', 'Tesztelek', 'Most', '$2y$10$At.d6AgDVTDyz/yjO1OHAOs89n/i3/Jpy6YIGtJzjBEF/rYfbkzOK', 'tesztelekmost@gmail.hu', '', '0000-00-00 00:00:00', 1, '', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -365,13 +385,13 @@ ALTER TABLE `users_web`
 -- AUTO_INCREMENT for table `adopts`
 --
 ALTER TABLE `adopts`
-  MODIFY `adopt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `adopt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `contact_question`
@@ -383,7 +403,7 @@ ALTER TABLE `contact_question`
 -- AUTO_INCREMENT for table `pets`
 --
 ALTER TABLE `pets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -395,7 +415,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_web`
 --
 ALTER TABLE `users_web`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

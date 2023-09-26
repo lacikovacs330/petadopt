@@ -25,6 +25,7 @@
 </footer>
 <style>
 footer {
+    margin-top: 50px;
     color: #6e6e73;
     padding: 1em;
     background-color: #f5f5f7;

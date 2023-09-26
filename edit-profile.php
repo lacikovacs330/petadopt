@@ -1,8 +1,11 @@
 <?php
 session_start();
 require_once('config/db.php');
-if (!isset($_SESSION['username']) OR !isset($_SESSION['id_user']) OR !is_int($_SESSION['id_user'])) {
-    header("Location: login.php");
+require_once('register/config.php');
+require_once('register/functions_def.php');
+
+if (!isAuthenticated()) {
+    redirection(SITE. "login.php");
 }
 require_once('assets/php/header.php');
 require_once('assets/php/nav.php');
@@ -57,15 +60,24 @@ $row = $result->fetch_assoc();
                 <i class="fa">&#xf023;</i>
                     <div style="display: flex; gap: 1em;">
                         <div style="width: 50%">
+                        <div class="input-group" style="width: 100%">
                             <label for="firstPassword">ÚJ JELSZÓ</label>
-                            <input type="password" id="firstPassword" name="newPassword" required placeholder="Jelszó..">
+                            <input type="password" id="firstPassword" name="newPassword" required placeholder="Jelszó.." onkeyup="validateFirstPassword()">
+                            <span id="first-password-login-error"></span>
+                        </div>
                         </div>
                         <div style="width: 50%">
+                        <div class="input-group" style="width: 100%">
                             <label for="secondPassword">ÚJ JELSZÓ ISMÉT</label>
-                            <input type="password" id="secondPassword" name="newPasswordConfirm" required placeholder="Jelszó ismét..">
+                            <input type="password" id="secondPassword" name="newPasswordConfirm" required placeholder="Jelszó ismét.." onkeyup="validateSecondPassword()">
+                            <span id="second-password-login-error"></span>
+                        </div>
                         </div>
                     </div>
-                    <input type="submit" value="Jelszó megváltoztatása" name="modifyPass">
+                    <div class="input-group" style="width: 100%">
+                    <input type="submit" value="Jelszó megváltoztatása" name="modifyPass" onclick="return validateModifyForm()">
+                    </div>
+                    <span id="subit-modify-error"></span>
                     <?php
                         if(isset($_SESSION["pass-msg"]) && $_SESSION["pass-msg"] == "succ"){
                             echo '<div class="alertData"><span>Sikeresen megváltoztatta jelszavát!</span></div>';
@@ -81,6 +93,7 @@ $row = $result->fetch_assoc();
         </div>
     </div>
 </div>
+<script src="assets/js/register.js"></script>
 <?php
 require_once('assets/php/footer.php');
 ?>

@@ -175,7 +175,7 @@ body {
     background-color: #fff;
     padding: 10px 80px;
     border-radius: 5px;
-    border: 1px solid #fff;
+    border: 1px solid #000;
     font-weight: bold;
     font-family: 'Oswald', sans-serif;
     transition: background-color 1s ease-out 100ms;
@@ -295,7 +295,7 @@ body {
     background-color: #fff;
     padding: 10px 80px;
     border-radius: 5px;
-    border: 1px solid #fff;
+    border: 1px solid #000;
     font-weight: bold;
     font-family: 'Oswald', sans-serif;
     transition: background-color 1s ease-out 100ms
@@ -791,7 +791,7 @@ body {
     height: 80%;
     width: 40%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-width: 1px;
@@ -799,6 +799,17 @@ body {
     border-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)) 1 100%;
     margin-right: 15px;
     border-left: hidden;
+}
+
+.user-contact {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.user-contact a {
+    margin-left: 5px;
+    text-decoration: none;
+    color: #04AA6D;
 }
 
 .rightSide {
@@ -811,6 +822,7 @@ body {
     text-align: left;
 }
 
+
 .rightSide span {
     margin-bottom: 10px;
     margin-left: 10px;
@@ -818,7 +830,7 @@ body {
 }
 
 .modalTitle {
-    color:#0355C0;
+    color:#04AA6D;
     font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
@@ -1239,6 +1251,32 @@ body {
         color: #FFF;
     }
 
+    .alertAdopt {
+        width: 580px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        margin-top: 15px;
+        padding: 10px 10px;
+        background-color: #37C70C;
+        color: #FFF;
+    }
+
+    .alertAdoptErr {
+        width: 580px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        margin-top: 15px;
+        padding: 10px 10px;
+        background-color: #CF2608;
+        color: #FFF;
+    }
+
     .alertData {
         width: 97.5%;
         display: flex;
@@ -1349,7 +1387,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: #0355C0;
+    color: #04AA6D;
 }
 
 #edit-profile-container {
@@ -1496,29 +1534,23 @@ body {
 
 /* ADMIN */
 
+#users-admin table {
+    width: 80%;
+}
+
 #users-admin td, #users-admin th, #ad-admin td, #ad-admin th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#users-admin table {
-    width: 80%;
-}
-  
-#users-admin tr:nth-child(even), #ad-admin tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-  
-#users-admin tr:hover, #ad-admin tr:hover {
-    background-color: #ddd;
+#users-admin td {
+    font-size: 15px;
 }
   
 #users-admin th, #ad-admin th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    background-color: #04AA6D;
-    color: #FFF;
 }
 
 .admin-title {
@@ -1546,9 +1578,10 @@ body {
     height: 100px;
 }
 
-#users-admin button[type=submit], button[type=reset] {
+#users-admin button[type=submit], button[type=reset], #ad-admin button[type=submit], #ad-admin button[type=reset] {
     padding: 5px 10px;
     margin-right: 5px;
+    font-size: 13px;
     border: 1px solid #000;
     font-weight: bold;
     font-family: 'Oswald', sans-serif;
@@ -1597,7 +1630,7 @@ body {
     height: 100px;
 }
 
-#deletePet, #addPet {
+#deletePet, #addPet, #disPet {
     padding: 5px 10px;
     border: 1px solid #000;
     font-weight: bold;
@@ -1605,33 +1638,25 @@ body {
     transition: background-color 1s ease-out 100ms
 }
 
-#deletePet:hover, #addPet:hover {
+#deletePet:hover, #addPet:hover, #disPet:hover {
     color: #FFF;
     border: 1px solid #000;
     cursor: pointer;
     transition: background-color 1s ease-out 100ms;
 }
 
-#deletePet {
+#deletePet, #disPet, #takeAdmin {
     background-color: #CF2608;
 }
 
-#addPet {
-    background-color: #37C70C;
-}
-
-#takeAdmin {
-    background-color: #CF2608;
-}
-
-#giveAdmin {
+#addPet, #giveAdmin {
     background-color: #37C70C;
 }
 
 /* AD POST */
 
 #adding-new_pet h3 {
-    color: #0355C0;
+    color: #04AA6D;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1750,6 +1775,28 @@ body {
     background-color: #000;
     cursor: pointer;
     transition: background-color 1s ease-out 100ms
+}
+
+
+
+/* Erorr's on forms */
+
+.input-group {
+    position: relative;
+}
+
+input {
+    padding-left:48px;
+}
+
+.input-group span {
+    position: absolute;
+    left: 570px;
+    bottom: 30px;
+}
+
+.input-group #subit-error {
+    text-align: center;
 }
 
 

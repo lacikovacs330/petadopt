@@ -1,11 +1,21 @@
 <nav>
-    <ul>
+    <ul class="nonResponsive">
     <li><a href="index.php">Kezdőlap</a></li>
         <li><a href="contact.php">Kapcsolat</a></li>
         <li><a href="animals.php">Állataink</a></li>
         <li><a href="about.php">Rólunk</a></li>
         <li><a href="login.php">Bejelentkezés</a></li>
     </ul>
+    <div class="dropdown">
+        <span class="dropmenu"><i style="font-size:24px" class="fa">&#xf0c9;</i></span>
+        <div class="dropdown-content">
+            <li style="list-style-type: none"><a href="index.php">Kezdőlap</a></li>
+            <li style="list-style-type: none"><a href="contact.php">Kapcsolat</a></li>
+            <li style="list-style-type: none"><a href="animals.php">Állataink</a></li>
+            <li style="list-style-type: none"><a href="about.php">Rólunk</a></li>
+            <li style="list-style-type: none"><a href="login.php">Bejelentkezés</a></li>
+        </div>
+    </div>
     <div>
         <a href="index.php" class="logo"><i style='font-size:24px' class='fas'>&#xf1b0;</i>Petadopt</a>
     </div>
@@ -25,7 +35,7 @@
     <img src="assets/img/downloading.gif">
 </div>
 
-<script src="register/js/script.js"></script>
+<script src="assets/js/script.js"></script>
 
 <style>
 nav {
@@ -155,5 +165,56 @@ nav a:hover {
     #social-media-logos {
         display: none;
     }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropmenu {
+    display: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding-top: 8px;
+    padding-left: 12px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media only screen and (max-width: 1000px) {
+    .nonResponsive {
+        display: none;
+    }
+
+    .dropmenu {
+        display: inline-block;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .nameDisplay {
+        display: none;
+    }
+
+
 }
 </style>

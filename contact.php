@@ -2,7 +2,10 @@
 session_start();
 require_once('config/db.php');
 require_once('assets/php/header.php');
-if (!isset($_SESSION['username']) OR !isset($_SESSION['id_user']) OR !is_int($_SESSION['id_user'])) {
+require_once('register/config.php');
+require_once('register/functions_def.php');
+
+if (!isAuthenticated()) {
     require_once('assets/php/nav-guest.php');
 }
 else {
@@ -22,14 +25,24 @@ $restaurants = $conn->query($sql);
 </div>
 <div id="contact-form">
     <form method="post" id="contactId" action="action/contact-action.php">
-        <label for="fname">Keresztneve<span style="color: #CF2608">*</span></label>
-        <input type="text" id="fname" name="firstname" required placeholder="Keresztneve..">
 
-        <label for="lname">Vezetékneve<span style="color: #CF2608">*</span></label>
-        <input type="text" id="lname" name="lastname" required placeholder="Vezetékneve..">
+        <div class="input-group" style="width: 100%">
+            <label for="fname">Keresztneve<small style="color: #CF2608">*</small></label>
+            <input type="text" id="fname" name="firstname" required placeholder="Keresztneve.." onkeyup="validateFName()">
+            <span id="fname-error"></span>
+        </div>
 
-        <label for="email">EMAIL<span style="color: #CF2608">*</span></label>
-        <input type="email" id="email" name="email" required placeholder="example@gmail.com">
+        <div class="input-group" style="width: 100%">
+            <label for="lname">Vezetékneve<small style="color: #CF2608">*</small></label>
+            <input type="text" id="lname" name="lastname" required placeholder="Vezetékneve.." onkeyup="validateLName()">
+            <span id="lname-error"></span>
+        </div>
+
+        <div class="input-group" style="width: 100%">
+            <label for="email">EMAIL<small style="color: #CF2608">*</small></label>
+            <input type="email" id="email" name="email" required placeholder="example@gmail.com" onkeyup="validateEmail()">
+            <span id="email-error"></span>
+        </div>
 
         <label for="question">Kérdés<span style="color: #CF2608">*</span></label>
         <select id="question" name="question">
@@ -43,10 +56,16 @@ $restaurants = $conn->query($sql);
             ?>
         </select>
 
-        <label for="message">Üzenet<span style="color: #CF2608">*</span></label>
-        <textarea id="message" name="message" required placeholder="Irja le üzenetét.."></textarea>
-
-        <input type="submit" value="Elküld" name="sb">
+        <div class="input-group" style="width: 100%">
+            <label for="message">Üzenet<small style="color: #CF2608">*</small></label>
+            <textarea id="message" name="message" required placeholder="Irja le üzenetét.." onkeyup="validateMessage()"></textarea>
+            <span id="message-error"></span>
+        </div>
+              
+        <div class="input-group" style="width: 100%">
+            <input type="submit" value="Elküld" name="sb" onclick="return validateForm()">
+        </div>
+        <span id="subit-error"></span>
         <?php
         if(isset($_SESSION["contact-msg"]) && $_SESSION["contact-msg"] == "succ"){
             echo '<div class="alertContact"><span>Sikeresen rögzítettük kérdésed!</span></div>';
@@ -60,9 +79,10 @@ $restaurants = $conn->query($sql);
     </form>
 </div>
 
+<script src="assets/js/contact.js"></script>
+
 <?php
 require_once('assets/php/footer.php');
 ?>
 </body>
-
 </html>

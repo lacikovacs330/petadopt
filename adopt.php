@@ -1,8 +1,10 @@
 <?php 
 session_start();
+require_once('register/config.php');
+require_once('register/functions_def.php');
 
-if (!isset($_SESSION['username']) OR !isset($_SESSION['id_user']) OR !is_int($_SESSION['id_user'])) {
-    header("Location: login.php");
+if (!isAuthenticated()) {
+    redirection(SITE. "login.php");
 }
 
 require_once('assets/php/header.php');
@@ -25,28 +27,48 @@ $animalResult = $result->fetch_assoc();
     <form method="post" id="adopt">
         <label for="salad">Kiválasztott állat</label>
         <input type="text" disabled value="<?= $petResult["name"] . ', ' .$petResult["specie"] ?>">
-        <label for="lname">Vezetéknév*</label>
-        <input type="text" id="lname" name="lname" required placeholder="Vezetékneve..">
-        <label for="fname">Keresztnév*</label>
-        <input type="text" id="fname" name="fname" required placeholder="Keresztneve..">
-        <label for="email">EMAIL*</label>
-        <input type="email" id="email" name="email" required placeholder="example@gmail.com">
-        <label for="address">Lakcím*</label>
-        <input type="text" id="address" name="address" required placeholder="Adja meg lakcímét">
-        <input type="submit" value="Örökbefogadom" name="adopt">
+
+        <div class="input-group" style="width: 100%">
+            <label for="lname">Vezetéknév<small style="color: #CF2608">*</small></label>
+            <input type="text" id="lastnameAdopt" name="lastnameAdopt" required placeholder="Vezetékneve.." onkeyup="validateLName6()">
+            <span id="lastname-adopt-error"></span>
+        </div>
+
+        <div class="input-group" style="width: 100%">
+            <label for="fname">Keresztnév<small style="color: #CF2608">*</small></label>
+            <input type="text" id="firstnameAdopt" name="firstnameAdopt" required placeholder="Keresztneve.." onkeyup="validateFName6()">
+            <span id="firstname-adopt-error"></span>
+        </div>
+
+        <div class="input-group" style="width: 100%">
+            <label for="email">EMAIL<small style="color: #CF2608">*</small></label>
+            <input type="email" id="emailAdopt" name="emailAdopt" required placeholder="example@gmail.com" onkeyup="validateEmail6()">
+            <span id="email-adopt-error"></span>
+        </div>  
+
+        <div class="input-group" style="width: 100%">
+            <label for="address">Lakcím<small style="color: #CF2608">*</small></label>
+            <input type="text" id="addressAdopt" name="addressAdopt" required placeholder="Adja meg lakcímét" onkeyup="validateAddress6()">
+            <span id="address-adopt-error"></span>
+        </div>  
+
+        <div class="input-group" style="width: 100%">
+            <input type="submit" value="Örökbefogadom" name="adopt" onclick="return validateForm6()">
+        </div>
+        <span id="subit-adopt-error"></span>
 
         <?php
             if(isset($_POST["adopt"])) {
-                if(isset($_POST["lname"]) && !empty($_POST["lname"]) && 
-                    isset($_POST["fname"]) && !empty($_POST["fname"]) &&
-                    isset($_POST["email"]) && !empty($_POST["email"]) &&
-                    isset($_POST["address"]) && !empty($_POST["address"]) &&
+                if(isset($_POST["lastnameAdopt"]) && !empty($_POST["lastnameAdopt"]) && 
+                    isset($_POST["firstnameAdopt"]) && !empty($_POST["firstnameAdopt"]) &&
+                    isset($_POST["emailAdopt"]) && !empty($_POST["emailAdopt"]) &&
+                    isset($_POST["addressAdopt"]) && !empty($_POST["addressAdopt"]) &&
                     $petResult["adopted"] != 0) {
 
-            $firstname = $_POST["fname"];
-            $lastname = $_POST["lname"];
-            $email = $_POST["email"];
-            $address = $_POST["address"];
+            $firstname = $_POST["firstnameAdopt"];
+            $lastname = $_POST["lastnameAdopt"];
+            $email = $_POST["emailAdopt"];
+            $address = $_POST["addressAdopt"];
             $user = $_SESSION["username"];
             $specie = $petResult["specie"];
             $name = $petResult["name"];
@@ -54,7 +76,7 @@ $animalResult = $result->fetch_assoc();
             $sql1 = "INSERT INTO adopts (user, pet_name, pet_specie, lastname, firstname, email, address) values ('$user', '$name', '$specie', '$lastname', '$firstname', '$email', '$address')";
 
             if ($conn->query($sql1) === TRUE) {
-                echo '<div class="alertContact"><span>Sikeresen örökbefogadta: ' .$name. '</span></div>';
+                echo '<div class="alertAdopt"><span>Sikeresen örökbefogadta: ' .$name. '</span></div>';
                 $sql2 = "UPDATE pets SET adopted = 0 where pets.id = '$petId'";
                 if($conn->query($sql2)){
                     echo "<meta http-equiv='refresh' content='2'>";
@@ -62,12 +84,12 @@ $animalResult = $result->fetch_assoc();
             } 
             
               else {
-                echo '<div class="alertContactErr"><span>Az alábbi kiskedvenc már örökbe lett fogadva!</span></div>';
+                echo '<div class="alertAdoptErr"><span>Az alábbi kiskedvenc már örökbe lett fogadva!</span></div>';
               }
 
         }
         else {
-            echo '<div class="alertContactErr"><span>Az alábbi kiskedvenc már örökbe lett fogadva!</span></div>';
+            echo '<div class="alertAdoptErr"><span>Az alábbi kiskedvenc már örökbe lett fogadva!</span></div>';
             echo "<meta http-equiv='refresh' content='2'>";
           }
     }
@@ -75,6 +97,6 @@ $animalResult = $result->fetch_assoc();
 
     </form>
 </div>
+<script src="assets/js/adopt.js"></script>
 </body>
-
 </html>

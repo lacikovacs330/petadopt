@@ -79,9 +79,58 @@
 
 /* Adopt page */
 
+@media only screen and (max-width: 1500px) {
+    .input-group span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        right: 15px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .input-group span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        right: 15px;
+    }
+}
+
+@media only screen and (max-width: 555px) {
+    .input-group span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        right: 15px;
+    }
+}
+
+@media only screen and (max-width: 349px) {
+    .input-group span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        right: 15px;
+    }
+}
+
 @media only screen and (max-width: 700px) {
     #adopt input, select, textarea {
         width: 100% !important;
+    }
+
+    .alertAdopt {
+        width: 93%;
+    }
+
+    .alertAdoptErr {
+        width: 93%;
+        text-align: center;
     }
 
     #adopt form {
@@ -94,6 +143,15 @@
         width: 100% !important;
     }
 
+    .alertAdopt {
+        width: 93%;
+    }
+
+    .alertAdoptErr {
+        width: 93%;
+        text-align: center;
+    }
+
     #adopt form {
         width: 300px;
     }
@@ -102,6 +160,15 @@
 @media only screen and (max-width: 350px) {
     #adopt input, select, textarea {
         width: 100% !important;
+    }
+
+    .alertAdopt {
+        width: 93%;
+    }
+
+    .alertAdoptErr {
+        width: 93%;
+        text-align: center;
     }
 
     #adopt form {
@@ -147,44 +214,44 @@
     }
 
     .contact-content {
-        padding:0;
-        margin-right: 5px;
-        font-size: 11px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        text-align: center;
     }
 
     #contact-main {
         background-image: none;
-        background: rgba(131, 128, 128, 0.5);
+        width: 100%;
     }
 }
 
 @media only screen and (max-width: 680px) {
     .pet-content {
         width: 100%;
-        padding: 0;
         justify-content: center;
         text-align: center;
     }
 
     #pet-main {
-        width: 80%;
+        width: 100%;
     }
 
     #about-main {
-        width: 80%;
-    }
-
-    #contact-main {
-        width: 80%;
-
+        background-color: none;
+        width: 100%;
     }
 
     .about-content {
         width: 100%;
-        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: flex-start;
         font-size: 15px;
-        margin-left: 5px;
+        text-align: center;
     }
 
     .petadopt-logo {
@@ -200,7 +267,12 @@
 @media only screen and (max-width: 400px) {
     #pet-main {
         background-image: none;
-        background: rgba(131, 128, 128, 0.5);
+        width: 100%;
+    }
+
+    #contact-main {
+        background-color: none;
+        width: 100%;
     }
 
     #myBtn {
@@ -213,13 +285,6 @@
 
     #searcher-bg input {
         width: 100%;
-    }
-}
-
-@media only screen and (max-width: 760px) {
-    .contact-content {
-        padding: 0;
-        margin-right: 4px;
     }
 }
 
@@ -239,7 +304,6 @@
 
     .contact-content {
         font-size: 9px;
-        margin-right: 4px;
     }
 
     .content h1 {
@@ -322,6 +386,110 @@
 
     .users-pets-title h1 {
         text-align: center;
+    }
+}
+
+/* Contact */
+
+@media only screen and (max-width: 698px){
+    .input-group span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        right: 15px;
+    }
+
+    .alertContact {
+        width: 93%;
+    }
+
+    .alertContactErr {
+        width: 93%;
+    }
+
+    .alertData {
+        width: 93%;
+    }
+
+    .alertDataErr {
+        width: 93%;
+    }
+}
+
+@media only screen and (max-width: 555px){
+    .input-group span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        right: 15px;
+    }
+
+    .alertContact {
+        width: 93%;
+    }
+
+    .alertContactErr {
+        width: 93%;
+    }
+
+    .alertData {
+        width: 93%;
+    }
+
+    .alertDataErr {
+        width: 93%;
+    }
+}
+
+@media only screen and (max-width: 349px){
+    .input-group span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        right: 15px;
+    }
+
+    .alertContact {
+        width: 93%;
+    }
+
+    .alertContactErr {
+        width: 93%;
+    }
+
+    .alertData {
+        width: 93%;
+    }
+
+    .alertDataErr {
+        width: 93%;
+    }
+}
+
+@media only screen and (max-width: 698px){
+    .input-group span{
+        position: absolute;
+        left: 450px;
+        bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 555px){
+    .input-group span{
+        position: absolute;
+        left: 250px;
+        bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 349px){
+    .input-group span{
+        position: absolute;
+        left: 150px;
+        bottom: 30px;
     }
 }
 

@@ -8,84 +8,81 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 ?>
 
-<nav class="navbar">
+<nav>
+    <ul class="nonResponsive">
+        <li><a href="index.php">Kezdőlap</a></li>
+        <li><a href="contact.php">Kapcsolat</a></li>
+        <li><a href="animals.php">Állataink</a></li>
+        <li><a href="favorites.php">Kedvencek</a></li>
+        <li><a href="about.php">Rólunk</a></li>
+
+        <?php
+        if($row["level"] == 2) {
+        ?>
+        <li><a href="ad-posting.php">Hírdetés feladás</a></li>
+        <li class="admin-console-nav"><a href="admin-console.php">Adminpult</a></li>
+        <?php
+        }
+        else if($row["level"] <= 1){ ?>
+        <li><a href="ad-posting.php">Hírdetés feladás</a></li>
+        <?php
+        }
+        ?>
+        <li><a href="register/logout.php">Kijelentkezés</a></li><br>
+    </ul>
+
+
+
     <div class="dropdown">
-        <span style="cursor:pointer;">Menü</span>
+        <span class="dropmenu"><i style="font-size:24px" class="fa">&#xf0c9;</i></span>
         <div class="dropdown-content">
-            <a href="index.php">Kezdőlap</a><br>
-            <a href="contact.php">Kapcsolat</a><br>
-            <a href="animals.php">Kiskedvencek</a><br>
-            <a href="about.php">Rólunk</a><br>
+            <li style="list-style-type: none"><a href="index.php">Kezdőlap</a></li>
+            <li style="list-style-type: none"><a href="contact.php">Kapcsolat</a></li>
+            <li style="list-style-type: none"><a href="animals.php">Állataink</a></li>
+            <li style="list-style-type: none"><a href="favorites.php">Kedvencek</a></li>
+            <li style="list-style-type: none"><a href="about.php">Rólunk</a></li>
+            <?php
+        if($row["level"] == 2) {
+        ?>
+        <li style="list-style-type: none"><a href="ad-posting.php">Hírdetés feladás</a></li>
+        <li style="list-style-type: none" class="admin-console-nav"><a href="admin-console.php">Adminpult</a></li>
+        <?php
+        }
+        else if($row["level"] <= 1){ ?>
+        <li style="list-style-type: none"><a href="ad-posting.php">Hírdetés feladás</a></li>
+        <?php
+        }
+        ?>
+        <li style="list-style-type: none"><a href="register/logout.php">Kijelentkezés</a></li>
             <?php
             if($row["level"] == 2) {
-            ?>
-            <li><a href="ad-posting.php">Hírdetés feladás</a></li>
-            <li class="admin-console-nav"><a href="admin-console.php">Adminpult</a></li>
-            <?php
-            }
-            else if($row["level"] <= 1){ ?>
-            <li><a href="ad-posting.php">Hírdetés feladás</a></li>
-            <?php
-            }
-            ?>
-            <a href="register/logout.php">Kijelentkezés</a><br><br><br>
-            <div>
-            <?php
-            if($row["level"] == 2) {
-            ?>
-            <span style="margin-right: 15px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: bolder; font-size: 15px">Üdv,
-            <a style="color: #0355C0;" href="edit-profile.php"><?= $_SESSION['username'] ?></a><i class="material-icons"
-                title="Admin" style="font-size: 17px">&#xe8e8;</i></span>
-            <a href="index.php" class="logo"><i style='font-size:24px' class='fas'>&#xf1b0;</i>Petadopt</a>
-            <?php
+                ?>
+                <span style="margin-right: 15px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: bolder; font-size: 15px">
+                <a style="color: #04AA6D;" href="edit-profile.php"><?= $_SESSION['username'] ?></a><i class="material-icons" title="Admin" style="font-size: 13px">&#xe8e8;</i></span>
+                <?php
             }
             else { ?>
-            <span style="margin-right: 15px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: bolder; font-size: 15px">Üdv,
-            <a style="color: #0355C0;" href="edit-profile.php"><?= $_SESSION['username'] ?></a></span>
-            <a href="index.php" class="logo"><i style='font-size:24px' class='fas'>&#xf1b0;</i>Petadopt</a>
-            <?php 
+                <span style="margin-right: 15px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: bolder; font-size: 15px">
+                <a style="color: #04AA6D;" href="edit-profile.php"><?= $_SESSION['username'] ?></a></span>
+                <?php
             }
             ?>
         </div>
     </div>
-</div>
-</nav>
 
-
-<nav>
-    <ul>
-        <li><a class="text" href="index.php">Kezdőlap</a></li>
-        <li><a class="text" href="contact.php">Kapcsolat</a></li>
-        <li><a class="text" href="animals.php">Állataink</a></li>
-        <li><a class="text" href="favorites.php">Kedvencek</a></li>
-        <li><a class="text" href="about.php">Rólunk</a></li>
-        <?php
-        if($row["level"] == 2) {
-        ?>
-        <li><a class="text" href="ad-posting.php">Hírdetés feladás</a></li>
-        <li class="text" class="admin-console-nav"><a href="admin-console.php">Adminpult</a></li>
-        <?php
-        }
-        else if($row["level"] <= 1){ ?>
-        <li><a class="text" href="ad-posting.php">Hírdetés feladás</a></li>
-        <?php
-        }
-        ?>
-        <li><a class="text" href="register/logout.php">Kijelentkezés</a></li>
-    </ul>
     <div>
         <?php
         if($row["level"] == 2) {
         ?>
-        <span class="text" style="margin-right: 15px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: bolder; font-size: 15px">Üdv,
-            <a class="text" style="color: #0355C0;" href="edit-profile.php"><?= $_SESSION['username'] ?></a><i class="material-icons"
+        <span class="nameDisplay" style="margin-right: 15px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: bolder; font-size: 15px">Üdv,
+            <a style="color: #04AA6D;" href="edit-profile.php"><?= $_SESSION['username'] ?></a><i class="material-icons"
                 title="Admin" style="font-size: 17px">&#xe8e8;</i></span>
         <a href="index.php" class="logo"><i style='font-size:24px' class='fas'>&#xf1b0;</i>Petadopt</a>
         <?php
         }
         else { ?>
-        <span class="text" style="margin-right: 15px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: bolder; font-size: 15px">Üdv,
-            <a class="text" style="color: #0355C0;" href="edit-profile.php"><?= $_SESSION['username'] ?></a></span>
+        <span class="nameDisplay" style="margin-right: 15px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: bolder; font-size: 15px">Üdv,
+            <a style="color: #04AA6D;" href="edit-profile.php"><?= $_SESSION['username'] ?></a></span>
         <a href="index.php" class="logo"><i style='font-size:24px' class='fas'>&#xf1b0;</i>Petadopt</a>
         <?php 
         }
@@ -96,7 +93,7 @@ $row = $result->fetch_assoc();
 <button onclick="topFunction()" id="myBtn" title="Vissza a tetejére"><i style="font-size:24px"
         class="fa arrow-up">&#xf077;</i></button>
 
-<script src="register/js/script.js"></script>
+<script src="assets/js/script.js"></script>
 
 <div id="social-media-logos">
     <a href="https://facebook.com" class="fa fa-facebook" title="Facebook"></a>
@@ -234,63 +231,68 @@ nav a:hover {
     color: #fff;
 }
 
-
-.dropdown {
-    position: relative;
-    display: none;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 12px 16px;
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 @media only screen and (max-width: 1000px) {
     #social-media-logos {
         display: none;
     }
 }
 
-@media only screen and (max-width: 710px) {
-    .dropdown {
-      display: inline-block;
-    }
-
-    .text {
-      display: none;
-    }
-
-    .logo123 .logo {
-      display: none;
-    }
-}
-
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 800px) {
     .admin-console-nav {
         display: none;
     }
 }
 
-@media only screen and (max-width: 710px) {
-    .dropdown {
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropmenu {
+    display: none;
+}
+
+.dropdown-content {
+    margin-top: 18px;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #000;
+    margin-top: 8px;
+    margin-left: 12px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media only screen and (max-width: 1000px) {
+    .nonResponsive {
+        display: none;
+    }
+
+    .dropmenu {
         display: inline-block;
     }
 
-    .text {
+    nav ul {
         display: none;
     }
 
-    .logo123 .name {
+    .nameDisplay {
         display: none;
     }
+
+
 }
+
 </style>

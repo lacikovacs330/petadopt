@@ -18,7 +18,7 @@ if(isset($_POST["sbDog"]) && isAuthenticated()) {
             $age = $_POST["age"];
             $gender = $_POST["gender"];
             $specie = $_POST["specie"];
-            $user = $_SESSION["username"];
+            $user = $_SESSION["id_user"];
 
             $sql1 = "INSERT INTO pets (specieId, whose, name, description, image, gender, age) values ('$specie', '$user', '$name', '$description', '$image', '$gender', '$age')";
             

@@ -1,8 +1,10 @@
 <?php
 session_start();
+require_once('register/config.php');
+require_once('register/functions_def.php');
 
-if (!isset($_SESSION['username']) OR !isset($_SESSION['id_user']) OR !is_int($_SESSION['id_user'])) {
-    header("Location: login.php");
+if (!isAuthenticated()) {
+    redirection(SITE. "login.php");
 }
 
 require_once('assets/php/header.php');
@@ -13,7 +15,7 @@ require_once('config/db.php');
 <div class="card">
     <div class="card-container">
         <?php
-		$sql = "SELECT pets.id, species.name as specie, pets.description, pets.image, pets.name, pets.gender, pets.age, pets.adopted, animals.id as animalId, pets.active from pets, species, animals WHERE pets.specieId = species.id AND animals.id = species.animalId AND whose = '".$_SESSION["username"]."'";
+		$sql = "SELECT pets.id, species.name as specie, pets.description, pets.image, pets.name, pets.gender, pets.age, pets.adopted, animals.id as animalId, pets.active from pets, species, animals WHERE pets.specieId = species.id AND animals.id = species.animalId AND whose = '".$_SESSION["id_user"]."'";
 		$result = $conn->query($sql);
 		if($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
@@ -34,7 +36,7 @@ require_once('config/db.php');
                         <button type="button" class="infoButtonDis" disabled>Részletek</button>
                         <span class="adopted">ÖRÖKBEFOGADVA!</span>
             <?php } if($row["active"] == 0) { ?>
-                <span style="font-weight: bolder; color: #0355C0">Várakozás az admin válaszára!</span>
+                <span style="font-weight: bolder; color: #04AA6D;">Várakozás az admin válaszára!</span>
                 <?php } ?>
         </div>
 
@@ -65,7 +67,7 @@ require_once('config/db.php');
                 <div class="close1" onclick="closeModal(event)">+</div>
             </div>
         </div>
-        <script src="assets/js/main.js"></script>
+        <script src="assets/js/modal.js"></script>
         <?php
                 }
             }
